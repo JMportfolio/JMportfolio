@@ -4,9 +4,15 @@
     --glass-border: 1px solid rgba(255, 255, 255, 0.2);
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
     --text-color: #f0f0f0; /* Lighter text for contrast on darker background */
-    --accent-color: #8aff8a; /* A bright, fresh accent color */
+    
+    /* --- PNP THEME COLORS --- */
+    --pnp-blue-dark: #003366; /* Deep Navy Blue (Primary PNP color) */
+    --pnp-blue-light: #0066CC; /* Brighter Blue */
+    --pnp-yellow: #FFC300; /* Yellow/Gold (Accent color) */
+    
+    --accent-color: var(--pnp-yellow); /* Highlight headings with PNP Yellow */
     --primary-font: 'Poppins', sans-serif;
-    --background-gradient: linear-gradient(135deg, #1e3a8a, #0b0c10); /* Deep blue to dark */
+    --background-gradient: linear-gradient(135deg, #003366, #0b0c10); /* Navy Blue to Dark */
 }
 
 /* General Body Styles */
@@ -23,7 +29,7 @@ body {
     z-index: 1; /* Ensure body content is above blobs */
 }
 
-/* Dynamic Background Blobs */
+/* Dynamic Background Blobs - UPDATED COLORS */
 .glass-background {
     position: fixed;
     top: 0;
@@ -36,7 +42,8 @@ body {
 
 .blob {
     position: absolute;
-    background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Example gradient */
+    /* Changed from bright cyan to a blue variant */
+    background: linear-gradient(135deg, var(--pnp-blue-light), #004D99);
     border-radius: 50%;
     opacity: 0.6;
     filter: blur(100px); /* Heavy blur to create soft, glowing shapes */
@@ -48,7 +55,8 @@ body {
     height: 300px;
     top: 10%;
     left: 15%;
-    background: linear-gradient(135deg, #4CAF50, #8BC34A); /* Greenish blob */
+    /* Changed from greenish to yellowish/gold */
+    background: linear-gradient(135deg, #FFD700, var(--pnp-yellow)); 
     animation-delay: 0s;
 }
 
@@ -57,7 +65,8 @@ body {
     height: 400px;
     bottom: 5%;
     right: 20%;
-    background: linear-gradient(135deg, #FFC107, #FF9800); /* Orangish blob */
+    /* Changed from orangish to white/light blue */
+    background: linear-gradient(135deg, #FFFFFF, #B0E0E6); 
     animation-delay: 5s;
 }
 
@@ -67,7 +76,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #9C27B0, #E91E63); /* Purplish blob */
+    /* Changed from purplish to deep blue */
+    background: linear-gradient(135deg, var(--pnp-blue-dark), var(--pnp-blue-light)); 
     animation-delay: 10s;
 }
 
@@ -88,7 +98,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-    color: var(--accent-color); /* Highlight headings with accent color */
+    color: var(--accent-color); /* Highlight headings with accent color (PNP Yellow) */
     margin-top: 0;
     margin-bottom: 15px;
     font-weight: 600;
@@ -107,7 +117,7 @@ ul {
 
 a {
     text-decoration: none;
-    color: var(--accent-color);
+    color: var(--accent-color); /* Link color (PNP Yellow) */
     transition: color 0.3s ease;
 }
 
@@ -156,40 +166,62 @@ a:hover {
     text-align: center; /* Center content by default */
 }
 
+/* --- Ensure Centering and Horizontal Role Display --- */
+
+/* 1. Ensure the main container for the hero section centers items */
 .hero-section .container {
     display: flex;
-    flex-direction: column; /* Stack by default for mobile */
-    align-items: center;
+    flex-direction: column; /* Stack by default for mobile/new layout */
+    align-items: center; /* Center everything horizontally */
 }
 
+/* 2. Ensure the main content block itself centers its children */
 .hero-content {
-    padding-right: 0;
+    text-align: center; /* Center text/inline elements */
     width: 100%;
+    padding-right: 0; /* Override any padding that pushed content to the left */
 }
 
+/* 3. Re-center specific elements that might have been aligned left on desktop */
 .logo-text {
-    display: flex;
-    flex-direction: column;
+    /* Ensures logo and text stack in the middle */
+    justify-content: center;
     align-items: center;
+    flex-direction: column; /* Ensure stack for mobile/new design */
     margin-bottom: 25px;
 }
-
 .logo-text img {
     width: 70px; /* Slightly larger logo */
     margin-right: 0;
     margin-bottom: 15px;
 }
-
 .logo-text h1 {
     font-size: 1.6em;
     margin: 0;
-    color: #fff; /* White for main title */
+    color: #fff;
 }
-
 .logo-text p {
     font-size: 1em;
     margin: 5px 0 0 0;
     color: #ccc;
+}
+
+
+.portfolio-intro {
+    /* Forces all inner elements (h1, p, image) to be centered */
+    text-align: center; 
+}
+
+/* Styling for the new horizontal CRIMINOLOGY text - UPDATED TEXT SHADOW/COLOR */
+.portfolio-intro .role-horizontal {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--accent-color); /* PNP Yellow */
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 25px; /* Space below Criminology and above PORTFOLIO */
+    text-shadow: 0 0 10px rgba(255, 195, 0, 0.4); /* Yellow shadow */
 }
 
 .portfolio-intro h2 {
@@ -198,28 +230,28 @@ a:hover {
     color: #fff;
 }
 
+/* 4. Ensure the image container is centered */
 .profile-image-container {
     width: 180px;
     height: 220px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 20px auto; /* Centers the block-level image container */
     overflow: hidden;
     border-radius: 12px; /* Soften edges */
     border: var(--glass-border);
     box-shadow: var(--glass-shadow);
 }
-
 .profile-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(1.1); /* Slightly brighter image */
+    filter: brightness(1.1);
 }
 
 .portfolio-intro h1 {
-    font-size: 3em; /* Larger name */
+    font-size: 3em;
     margin: 10px 0;
     color: #fff;
-    text-shadow: 0 0 10px rgba(255,255,255,0.3); /* Subtle text shadow */
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
 
 .portfolio-intro .objective {
@@ -229,9 +261,56 @@ a:hover {
     padding: 0 15px;
 }
 
-/* Sidebar for Mobile: Repositioned */
+/* 5. Center the contact links (they are a flex container) */
+.contact-links {
+    display: flex;
+    justify-content: center; /* Centers the link buttons */
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.cta-link {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+/* Primary CTA Button (Email Me) - UPDATED TO PNP YELLOW/BLUE */
+.email-link {
+    background: var(--accent-color); /* PNP Yellow */
+    color: var(--pnp-blue-dark); /* Dark Blue text for contrast */
+    border: 2px solid var(--accent-color);
+}
+
+.email-link:hover {
+    background: transparent;
+    color: var(--accent-color); /* PNP Yellow text on hover */
+}
+
+/* Secondary CTA Button (Call Me/Resume) - UPDATED TO WHITE/BLUE */
+.phone-link {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.phone-link:hover {
+    background: #fff;
+    color: var(--pnp-blue-dark); /* Dark Blue text on hover */
+}
+/* END OF MODIFIED HERO STYLES */
+
+
+/* Sidebar: These original styles are mostly irrelevant now, 
+   but they are kept here in case you reintroduce the sidebar later. 
+   If the HTML no longer uses the .sidebar class, these rules have no effect.
+*/
 .sidebar {
-    background: rgba(255, 255, 255, 0.05); /* Very subtle */
+    background: rgba(255, 255, 255, 0.05);
     color: #fff;
     padding: 15px;
     width: 100%;
@@ -242,13 +321,29 @@ a:hover {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 }
-
 .sidebar-text {
     font-size: 1.4em;
     letter-spacing: 2px;
     margin: 0;
     font-weight: 700;
 }
+.sidebar-cta-btn { /* Moved from media query for consistency, but relies on .sidebar */
+    display: block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: var(--accent-color);
+    color: var(--pnp-blue-dark); /* Dark Blue text */
+    border-radius: 6px;
+    font-weight: 700;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.sidebar-cta-btn:hover {
+    background: #fff;
+    color: var(--pnp-blue-dark);
+    transform: translateY(-3px);
+}
+/* END Sidebar */
 
 
 /* Table of Content Section (Image 6) */
@@ -353,7 +448,8 @@ a:hover {
     overflow: hidden;
     margin: 0 0 15px 0;
     border: 2px solid var(--accent-color);
-    box-shadow: 0 0 15px rgba(138, 255, 138, 0.4);
+    /* Updated shadow to PNP Yellow */
+    box-shadow: 0 0 15px rgba(255, 195, 0, 0.4); 
 }
 
 .resume-photo img {
@@ -552,7 +648,7 @@ a:hover {
     border-bottom: none;
 }
 
-/* NEW: Back to Top Button Styling */
+/* NEW: Back to Top Button Styling - UPDATED COLORS */
 #back-to-top {
     display: none; /* Hidden by default */
     position: fixed;
@@ -568,8 +664,8 @@ a:hover {
     padding: 0;
     text-align: center;
     line-height: 50px;
-    /* Using glass-element styles but overriding for better button appearance */
-    background: rgba(138, 255, 138, 0.2); /* Semi-transparent accent color */
+    /* Semi-transparent accent color (PNP Yellow) */
+    background: rgba(255, 195, 0, 0.2); 
     color: var(--accent-color);
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -578,7 +674,7 @@ a:hover {
 
 #back-to-top:hover {
     background: var(--accent-color); /* Solid accent color on hover */
-    color: #1e3a8a; /* Dark text on hover */
+    color: var(--pnp-blue-dark); /* Dark Blue text on hover */
     transform: scale(1.1);
 }
 /* END NEW */
@@ -594,22 +690,22 @@ a:hover {
         padding: 80px 0;
     }
 
+    /* Override to force centering on desktop too, as requested by user */
     .hero-section .container {
-        flex-direction: row;
-        align-items: flex-start;
-        text-align: left;
+        flex-direction: column; /* Keep vertical stacking of content */
+        align-items: center;
     }
 
     .hero-content {
-        flex: 3;
-        padding-right: 40px;
-        text-align: left;
+        flex: auto; /* Remove explicit flex sizing */
+        padding-right: 0;
+        text-align: center;
     }
 
     .logo-text {
-        flex-direction: row;
+        flex-direction: row; /* Keep logo and text horizontal at the top on desktop */
         margin-bottom: 40px;
-        justify-content: flex-start;
+        justify-content: center; /* Center the logo block */
     }
 
     .logo-text img {
@@ -633,7 +729,7 @@ a:hover {
     .profile-image-container {
         width: 220px;
         height: 270px;
-        margin: 0 0 20px 0;
+        margin: 0 auto 20px auto; /* Centered on desktop */
     }
 
     .portfolio-intro h1 {
@@ -645,33 +741,31 @@ a:hover {
         padding: 0;
     }
 
+    /* --- Desktop Overrides for New Centered Layout --- */
+    
+    .portfolio-intro {
+        text-align: center; /* Override the old left-align */
+    }
+
+    .contact-links {
+        justify-content: center; /* Override the old flex-start */
+    }
+
+    /* The sidebar-related desktop styles are now obsolete with the new HTML structure */
     .sidebar {
-        flex: 1;
-        position: relative; /* Change from absolute to relative if not fixed to viewport */
-        width: auto;
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 0;
-        height: auto; /* Allow content to dictate height */
-        padding: 30px 20px; /* Adjust padding */
+        display: none; /* Hide the sidebar completely since content moved */
     }
 
-    .sidebar-text {
-        font-size: 2em;
-        letter-spacing: 5px;
-    }
-
+    /* Existing media query rules continue below */
     .toc-section ul {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for tablet/desktop */
+        grid-template-columns: repeat(2, 1fr);
         width: 100%;
     }
 
     .resume-header {
         flex-direction: row;
-        text-align: left;
+        text-align: center; /* Center for full-width layout */
+        justify-content: center;
     }
 
     .resume-photo {
@@ -680,15 +774,17 @@ a:hover {
         margin-right: 30px;
         margin-bottom: 0;
     }
-
+    
+    /* ... (rest of media queries) */
+    
     .value-table .table-header,
     .value-table .table-row {
-        grid-template-columns: 30% 70%; /* Restore two columns */
+        grid-template-columns: 30% 70%;
     }
 
     .value-table .table-header h4,
     .value-table .table-row p {
-        border-right: 1px solid rgba(255, 255, 255, 0.08); /* Restore vertical border */
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
         border-bottom: none;
     }
 
@@ -697,7 +793,7 @@ a:hover {
     }
 
     .certificate-grid {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjust min-width for larger certificates */
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         gap: 30px;
     }
 }
